@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 
-# Crear tabla DynamoDB 
+# Create Table Tasks in DynamoDB 
 resource "aws_dynamodb_table" "tasks_table" {
   name           = "Tasks"
   billing_mode   = "PROVISIONED"
@@ -34,7 +34,7 @@ resource "aws_dynamodb_table" "tasks_table" {
 }
 
 
-# Crear bucket S3
+# Create bucket S3
 resource "aws_s3_bucket" "task_storage" {
   bucket = "taskstorage"
   acl    = "private"
@@ -77,14 +77,14 @@ resource "aws_lambda_function" "execute_scheduled_task" {
 
 
 
-# Crear regla EventBridge every-minute
+# Create rule EventBridge every-minute
 resource "aws_cloudwatch_event_rule" "every_minute" {
   name                = "every-minute"
   schedule_expression = "cron(0/1 * * * ? *)"
   is_enabled          = true
 }
 
-# Asociar regla con Lambda executeScheduledTask
+# Link rule with Lambda executeScheduledTask
 resource "aws_cloudwatch_event_target" "execute_scheduled_task_target" {
   rule      = aws_cloudwatch_event_rule.every_minute.name
   target_id = "1"
