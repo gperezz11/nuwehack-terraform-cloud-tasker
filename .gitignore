@@ -1,0 +1,17 @@
+# .gitignore
+venv
+# IDE-specific files
+.idea/
+
+# Python package directories
+**/__pycache__/
+*/*.pyc
+# Output files
+output.json
+
+# Terraform-specific files
+
+*/.terraform/*
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup

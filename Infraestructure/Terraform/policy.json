@@ -1,0 +1,31 @@
+[
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": "sts:AssumeRole",
+                "Principal": {
+                    "Service": "lambda.amazonaws.com"
+                }
+            }
+        ]
+    },
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:DeleteItem",
+                    "dynamodb:Scan",
+                    "dynamodb:Query"
+                ],
+                "Effect": "Allow",
+                "Resource": "aws_dynamodb_table.tasks_table.arn"
+            }
+        ]
+    }
+]
