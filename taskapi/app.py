@@ -37,7 +37,9 @@ def create_task():
     if response['StatusCode'] != 200:
         return jsonify({'message': 'Error creating task'}), response['StatusCode']
     # Devuelve una respuesta
-    return jsonify({'message': 'Task scheduled successfully', 'task_id': task_id}), 201
+    result = json.loads(response['Payload'].read())
+    result_data = json.loads(result['body'])
+    return jsonify(result_data), 201
 
 @app.route('/listtask', methods=['GET'])
 def list_tasks():
